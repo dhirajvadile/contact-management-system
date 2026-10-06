@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Add Contact | Contact Manager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="mb-4">
+            <h1 class="h2 fw-bold mb-1">Add Contact</h1>
+            <p class="text-muted mb-0">Enter the contact details below.</p>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <form method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                            <input id="name" name="name" type="text" class="form-control" required maxlength="100">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+                            <input id="phone" name="phone" type="tel" class="form-control" required maxlength="20">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label fw-semibold">Email</label>
+                            <input id="email" name="email" type="email" class="form-control" maxlength="100">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="category" class="form-label fw-semibold">Category</label>
+                            <select id="category" name="category" class="form-select">
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="address" class="form-label fw-semibold">Address</label>
+                            <textarea id="address" name="address" class="form-control" rows="3" maxlength="255"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary px-4">Save Contact</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
